@@ -1,12 +1,9 @@
-|
-
-
 # Senzing
 
 # Generic Entity Specification
 
 ```
-Version: 2. 8
+Version: 2. 9
 ```
 ```
 Date: July 3, 2021
@@ -82,16 +79,15 @@ root level. However, lists must be used when there are multiple values for the s
 "DATA_SOURCE": "CUSTOMER ",
 
 ////a record ID is always desired
-{"RECORD_ID": 1001,
-
+"RECORD_ID": 1001,
 //multiple name segments placed in a list
 "NAME_LIST": [{
-	"NAME_TYPE": "PRIMARY",
-	"NAME_LAST": "Jones",
-	"NAME_FIRST": "Robert",
-	"NAME_MIDDLE": "M",
-	"NAME_PREFIX": "Mr",
-	"NAME_SUFFIX": "Jr" }],
+    "NAME_TYPE": "PRIMARY",
+    "NAME_LAST": "Jones",
+    "NAME_FIRST": "Robert",
+    "NAME_MIDDLE": "M",
+    "NAME_PREFIX": "Mr",
+    "NAME_SUFFIX": "Jr" }],
 
 "GENDER": "M",
 "DATE_OF_BIRTH": "1/2/1981",
@@ -103,27 +99,27 @@ root level. However, lists must be used when there are multiple values for the s
 
 //multiple Address segments placed in a list, where there are multiple addresses you will choose a "TYPE" like HOME and MAIL
 "ADDRESS_LIST": [{
-	"ADDR_TYPE": "HOME",
-	"ADDR_LINE1": "111 First St",
-	"ADDR_CITY": "Las Vegas",
-	"ADDR_STATE": "NV",
-	"ADDR_POSTAL_CODE": "89111",
-	"ADDR_COUNTRY": "US"
+    "ADDR_TYPE": "HOME",
+    "ADDR_LINE1": "111 First St",
+    "ADDR_CITY": "Las Vegas",
+    "ADDR_STATE": "NV",
+    "ADDR_POSTAL_CODE": "89111",
+    "ADDR_COUNTRY": "US"
 	},
 	{ "ADDR_TYPE": "MAIL",
-	"ADDR_LINE1": "PO Box 111",
-	"ADDR_CITY": "Las Vegas",
-	"ADDR_STATE": "NV",
-	"ADDR_POSTAL_CODE": "89111",
-	"ADDR_COUNTRY": "US" }],
+    "ADDR_LINE1": "PO Box 111",
+    "ADDR_CITY": "Las Vegas",
+    "ADDR_STATE": "NV",
+    "ADDR_POSTAL_CODE": "89111",
+    "ADDR_COUNTRY": "US" }],
 
 ////multiple phone numbers are placed in a list with a tagged TYPE. E.g. 'WORK' and 'CELL'
 "PHONE_LIST": [{
-	"PHONE_TYPE": "WORK",
-	"PHONE_NUMBER": "800-201-2001" },
+    "PHONE_TYPE": "WORK",
+    "PHONE_NUMBER": "800-201-2001" },
 
-	{ "PHONE_TYPE": "CELL",
-	"PHONE_NUMBER": "702-222-2222" }],
+    { "PHONE_TYPE": "CELL",
+    "PHONE_NUMBER": "702-222-2222" }],
 
 "EMAIL_ADDRESS": "bob@jonesfamily.com",
 "SOCIAL_HANDLE": "@bobjones27",
@@ -144,15 +140,15 @@ root level. However, lists must be used when there are multiple values for the s
 "TAX_ID_NUMBER": "EIN11111",
 "TAX_ID_COUNTRY": "US",
 "ADDRESS_LIST": [{
-	"ADDR_TYPE": "PRIMARY",
-	"ADDR_LINE1": "Presto Plaza - 2001 Eastern Ave",
-	"ADDR_CITY": "Las Vegas", "ADDR_STATE": "NV",
-	"ADDR_POSTAL_CODE": "89111",
-	"ADDR_COUNTRY": "US" },
+    "ADDR_TYPE": "PRIMARY",
+    "ADDR_LINE1": "Presto Plaza - 2001 Eastern Ave",
+    "ADDR_CITY": "Las Vegas", "ADDR_STATE": "NV",
+    "ADDR_POSTAL_CODE": "89111",
+    "ADDR_COUNTRY": "US" },
 
 	{"ADDR_TYPE": "MAIL",
-	"ADDR_LINE1": "Po Box 111"
-	ADDR_CITY": "Las Vegas",
+    "ADDR_LINE1": "Po Box 111"
+    "ADDR_CITY": "Las Vegas",
 	"ADDR_STATE": "NV",
 	"ADDR_POSTAL_CODE": "89111",
 	"ADDR_COUNTRY": "US"
@@ -378,19 +374,11 @@ A name is a highly desirable feature to map. Most resolution rules will require 
 
 **_Important notes:_**
 
- - The "PRIMARY” **NAME_TYPE** helps select the best name to display for an entity. See Special
-    attribute types and labels for when to use this. It is best to always specify name type.
-
- - The NAME_FULL attribute is provided if the parsed name fields are unavailable. You would not map both NAME_FULL and any other name fields in the same name segment.
-
+ - The "PRIMARY” **NAME_TYPE** helps select the best name to display for an entity. See Special attribute types and labels for when to use this. It is best to always specify name type.
+ - The NAME_FULL attribute is provided if the parsed name fields are unavailable. You would not map both    NAME_FULL and any other name fields in the same name segment.
  - If there is a common or nick name field, it represents a “second” name the individual is known by. In this case, map a second set of name columns duplicating the last name with the common name.
-
- - If using NAME_ORG then this record should be about an organization, not an individual i.e., do not map any of the individual name fields. You would not map both a NAME_ORG and any other name fields in the same name segment.
-
- - Sometimes there is both an organization name and a person name on a record, such as a contact list
-where you have the person and who they work for. In this case, you would map the person’s name
-as a name and the company as their employer. See Attributes for group associations for more information on this important distinction.
-
+ - If using NAME_ORG then this record should be about an organization, not an individual i.e., do not map    any of the individual name fields. You would not map both a NAME_ORG and any other name fields in the same name segment.
+ - Sometimes there is both an organization name and a person name on a record, such as a contact list where you have the person and who they work for. In this case, you would map the person’s name as a name and the company as their employer. See Attributes for group associations for more information on this important distinction.
 
 ### Attributes for addresses
 
@@ -687,7 +675,10 @@ addDataSource CUSTOMER
 
 ### How to add a new identifier
 
-Occasionally you will need to add a new kind of identifier. This consists of adding a feature and its
+// *This section seems to need to not be part of the Generic Entity Specification.  It should be linked from this md.
+This fits in the bucket of managing configuration of the engine.  It doesn't relate specficially to our out of the box behavior and data definitions.*//
+
+Occasionally, you will need to add a new kind of identifier. This consists of adding a feature and its
 associated attributes and there are templates to help you. At the G2ConfigTool prompt type “templateAdd
 list” to see the current list of templates.
 
