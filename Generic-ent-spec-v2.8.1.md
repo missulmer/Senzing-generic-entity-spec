@@ -11,7 +11,7 @@ Date: July 3, 2021
 
 ## Table of Contents
 
-- [Overview](# Overview)
+- Overview
 - Mapping source data
    - Creating JSON files
    - Creating CSV files
