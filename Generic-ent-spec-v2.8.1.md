@@ -3,7 +3,7 @@
 # Generic Entity Specification
 
 ```
-Version: 2. 9
+Version: 2.9.1
 ```
 ```
 Date: July 3, 2021
